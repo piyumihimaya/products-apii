@@ -1,4 +1,3 @@
-
 package uk.ac.westminster.products_api;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +16,19 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
+    @GetMapping("/products/summaries")
+    public List<String> getSummaries() {
+        return productService.getAllSummaries();
+    }
+
     @GetMapping("/products/{id}")
     public Product getProductById(@PathVariable Long id) {
         return productService.getProductById(id).orElse(null);
     }
 
+    // Temporary: Product is abstract, so Jackson can't build it from JSON.
     @PostMapping("/products")
-    public Product addProduct(@RequestBody Product product) {
+    public Product addProduct(@RequestBody DigitalProduct product) {
         return productService.addProduct(product);
     }
 

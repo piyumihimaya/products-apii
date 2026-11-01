@@ -1,4 +1,3 @@
-
 package uk.ac.westminster.products_api;
 
 import org.springframework.stereotype.Service;
@@ -20,6 +19,7 @@ public class ProductService {
                 nextId++, "27-inch Monitor", 249.99,
                 5.4, "61cm x 41cm x 18cm"));
     }
+
     public List<Product> getAllProducts() {
         return products;
     }
@@ -41,4 +41,11 @@ public class ProductService {
         products.removeIf(p -> p.getId().equals(id));
     }
 
+    public List<String> getAllSummaries() {
+        List<String> summaries = new ArrayList<>();
+        for (Product p : products) {
+            summaries.add(p.getSummary());
+        }
+        return summaries;
+    }
 }
